@@ -15,6 +15,14 @@
 		2103B8281BEAF90500DED437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2103B8261BEAF90500DED437 /* LaunchScreen.storyboard */; };
 		2103B8331BEAF90500DED437 /* stockDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8321BEAF90500DED437 /* stockDemoTests.m */; };
 		2103B83E1BEAF90500DED437 /* stockDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B83D1BEAF90500DED437 /* stockDemoUITests.m */; };
+		2103B84E1BEAFE8500DED437 /* AnotherBarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */; };
+		2103B84F1BEAFE8500DED437 /* AnotherBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */; };
+		2103B8521BEAFEB100DED437 /* DemoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */; };
+		2103B8561BEB343E00DED437 /* CubicLineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */; };
+		2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */; };
+		2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = 2125A3191BEC8692007363BF /* JJWIndexRecords.m */; };
+		21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */; };
+		6829FCD8E620F38AC783C781 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB952623EF120460B403A26 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +59,21 @@
 		2103B8391BEAF90500DED437 /* stockDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stockDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2103B83D1BEAF90500DED437 /* stockDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = stockDemoUITests.m; sourceTree = "<group>"; };
 		2103B83F1BEAF90500DED437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnotherBarChartViewController.xib; sourceTree = "<group>"; };
+		2103B84C1BEAFE8500DED437 /* AnotherBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnotherBarChartViewController.h; sourceTree = "<group>"; };
+		2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnotherBarChartViewController.m; sourceTree = "<group>"; };
+		2103B8501BEAFEB100DED437 /* DemoBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoBaseViewController.h; sourceTree = "<group>"; };
+		2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoBaseViewController.m; sourceTree = "<group>"; };
+		2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CubicLineChartViewController.xib; sourceTree = "<group>"; };
+		2103B8541BEB343E00DED437 /* CubicLineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CubicLineChartViewController.h; sourceTree = "<group>"; };
+		2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicLineChartViewController.m; sourceTree = "<group>"; };
+		2125A3181BEC8692007363BF /* JJWIndexRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWIndexRecords.h; sourceTree = "<group>"; };
+		2125A3191BEC8692007363BF /* JJWIndexRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWIndexRecords.m; sourceTree = "<group>"; };
+		21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utility.h"; sourceTree = "<group>"; };
+		21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utility.m"; sourceTree = "<group>"; };
+		4DB952623EF120460B403A26 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD0BAB8E6B1CE94CB4B8C9A2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E00B2DCB361E7F7913BE8F8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6829FCD8E620F38AC783C781 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +109,8 @@
 				2103B8311BEAF90500DED437 /* stockDemoTests */,
 				2103B83C1BEAF90500DED437 /* stockDemoUITests */,
 				2103B8161BEAF90500DED437 /* Products */,
+				497C74B61F5318249CE31D57 /* Pods */,
+				7F05BE8F8F0EA93749481840 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +127,16 @@
 		2103B8171BEAF90500DED437 /* stockDemo */ = {
 			isa = PBXGroup;
 			children = (
+				21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */,
+				21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */,
+				2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */,
+				2103B8541BEB343E00DED437 /* CubicLineChartViewController.h */,
+				2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */,
+				2103B8501BEAFEB100DED437 /* DemoBaseViewController.h */,
+				2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */,
+				2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */,
+				2103B84C1BEAFE8500DED437 /* AnotherBarChartViewController.h */,
+				2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */,
 				2103B81B1BEAF90500DED437 /* AppDelegate.h */,
 				2103B81C1BEAF90500DED437 /* AppDelegate.m */,
 				2103B81E1BEAF90500DED437 /* ViewController.h */,
@@ -110,6 +146,8 @@
 				2103B8261BEAF90500DED437 /* LaunchScreen.storyboard */,
 				2103B8291BEAF90500DED437 /* Info.plist */,
 				2103B8181BEAF90500DED437 /* Supporting Files */,
+				2125A3181BEC8692007363BF /* JJWIndexRecords.h */,
+				2125A3191BEC8692007363BF /* JJWIndexRecords.m */,
 			);
 			path = stockDemo;
 			sourceTree = "<group>";
@@ -140,6 +178,23 @@
 			path = stockDemoUITests;
 			sourceTree = "<group>";
 		};
+		497C74B61F5318249CE31D57 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E00B2DCB361E7F7913BE8F8A /* Pods.debug.xcconfig */,
+				DD0BAB8E6B1CE94CB4B8C9A2 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7F05BE8F8F0EA93749481840 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4DB952623EF120460B403A26 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2103B8421BEAF90500DED437 /* Build configuration list for PBXNativeTarget "stockDemo" */;
 			buildPhases = (
+				76E9FE1B8BC301D0268AB748 /* Check Pods Manifest.lock */,
 				2103B8111BEAF90500DED437 /* Sources */,
 				2103B8121BEAF90500DED437 /* Frameworks */,
 				2103B8131BEAF90500DED437 /* Resources */,
+				7EC8CB98C315F1960BFC200B /* Embed Pods Frameworks */,
+				6B4A0DFFFF743DC0441DFE5B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,9 +304,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2103B8561BEB343E00DED437 /* CubicLineChartViewController.xib in Resources */,
 				2103B8281BEAF90500DED437 /* LaunchScreen.storyboard in Resources */,
 				2103B8251BEAF90500DED437 /* Assets.xcassets in Resources */,
 				2103B8231BEAF90500DED437 /* Main.storyboard in Resources */,
+				2103B84E1BEAFE8500DED437 /* AnotherBarChartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,13 +328,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6B4A0DFFFF743DC0441DFE5B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76E9FE1B8BC301D0268AB748 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7EC8CB98C315F1960BFC200B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2103B8111BEAF90500DED437 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2103B8201BEAF90500DED437 /* ViewController.m in Sources */,
+				21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */,
+				2103B84F1BEAFE8500DED437 /* AnotherBarChartViewController.m in Sources */,
+				2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */,
 				2103B81D1BEAF90500DED437 /* AppDelegate.m in Sources */,
+				2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */,
+				2103B8521BEAFEB100DED437 /* DemoBaseViewController.m in Sources */,
 				2103B81A1BEAF90500DED437 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +527,7 @@
 		};
 		2103B8431BEAF90500DED437 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E00B2DCB361E7F7913BE8F8A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = stockDemo/Info.plist;
@@ -425,6 +539,7 @@
 		};
 		2103B8441BEAF90500DED437 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD0BAB8E6B1CE94CB4B8C9A2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = stockDemo/Info.plist;
@@ -501,6 +616,7 @@
 				2103B8441BEAF90500DED437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2103B8451BEAF90500DED437 /* Build configuration list for PBXNativeTarget "stockDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +625,7 @@
 				2103B8471BEAF90500DED437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2103B8481BEAF90500DED437 /* Build configuration list for PBXNativeTarget "stockDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +634,7 @@
 				2103B84A1BEAF90500DED437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
