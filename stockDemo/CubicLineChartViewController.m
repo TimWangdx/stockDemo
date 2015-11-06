@@ -17,6 +17,8 @@
 #import "JJWIndexRecords.h"
 #import "NSDate+Utility.h"
 
+#define kCount          250
+
 @interface CubicLineSampleFillFormatter : NSObject <ChartFillFormatter>
 {
 }
@@ -40,11 +42,12 @@
 @property (nonatomic, strong) IBOutlet UITextField *sliderTextX;
 @property (nonatomic, strong) IBOutlet UITextField *sliderTextY;
 
-@property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) NSTimer *timer;
 
 @property (nonatomic, strong) SocketIOClient *client;
-@property (nonatomic, strong) NSArray *records;
+@property (nonatomic, strong) NSMutableArray *records;
+@property (nonatomic, strong) NSArray *displayTime;
+@property (nonatomic, strong) NSArray *testArray;
 @end
 
 @implementation CubicLineChartViewController
@@ -76,7 +79,6 @@
     
     [_chartView setViewPortOffsetsWithLeft:20.f top:0.f right:0.f bottom:20.f];
     _chartView.backgroundColor = [UIColor colorWithRed:104/255.f green:241/255.f blue:175/255.f alpha:1.f];
-    //_chartView.backgroundColor = [UIColor orangeColor];
 
     _chartView.descriptionText = @"";
     _chartView.noDataTextDescription = @"You need to provide data for the chart.";
@@ -100,25 +102,6 @@
     yAxis.labelTextColor = [UIColor redColor];
     yAxis.labelPosition = YAxisLabelPositionInsideChart;
     
-//    ChartYAxis *yAxis = _chartView.leftAxis;
-//    yAxis.labelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.f];
-//    [yAxis setLabelCount:8 force:NO];
-//    yAxis.startAtZeroEnabled = NO;
-//    yAxis.labelTextColor = [UIColor redColor];
-//    yAxis.labelPosition = YAxisLabelPositionInsideChart;
-//    yAxis.drawGridLinesEnabled = NO;
-//    yAxis.axisLineColor = UIColor.whiteColor;
-//    _chartView.leftAxis.enabled = YES;
-    
-//    ChartYAxis *xAxis = _chartView.leftAxis;
-//    yAxis.labelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.f];
-//    [yAxis setLabelCount:6 force:NO];
-//    yAxis.startAtZeroEnabled = NO;
-//    yAxis.labelTextColor = [UIColor redColor];
-//    yAxis.labelPosition = YAxisLabelPositionInsideChart;
-//    yAxis.drawGridLinesEnabled = NO;
-//    yAxis.axisLineColor = UIColor.whiteColor;
-    
     _chartView.rightAxis.enabled = NO;
     _chartView.legend.enabled = NO;
     
@@ -135,73 +118,32 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setxzhou
-{
-    
-}
-
 - (void)setDataCount:(NSInteger)count range:(double)range
 {
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
     
-    NSArray *array = @[@"9:30",@"10:00",@"10:30",@"11:00",@"11:30",@"13:30",@"14:00",@"14:30",@"15:00",@"15:30"];
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < kCount; i++)
     {
-        //[xVals addObject:[@(i) stringValue]];
-        //[xVals addObject:[@(i + 1990) stringValue]];
         NSInteger flag = i % 30;
-        if(flag == 0 && i < 242)
+        if(flag == 0 && i <= 240)
         {
              NSInteger index = i / 30;
-            [xVals addObject:array[index]];
-            //[xVals addObject:[@(i) stringValue]];
+            [xVals addObject:self.displayTime[index]];
         }
         else
         {
-            [xVals addObject:[@(i) stringValue]];
+            [xVals addObject:@""];
         }
-        //[xVals addObject:array[index]];
     }
-    //[xVals addObjectsFromArray:array];
-    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
     
-    static BOOL bfisrt = NO;
-    if(bfisrt)
-    {
-        [yVals1 addObjectsFromArray:self.array];
-    }
+    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
     for (int i = 0; i < count; i++)
     {
-        if(!bfisrt)
-        {
-//            double mult = (range + 1);
-//            double val = (double) (arc4random_uniform(mult)) + 20;
-            JJWIndexRecords *reco = self.records[i];
-            double val = [reco.value doubleValue];
-            NSLog(@"---->>>%@",@(val));
-            [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
-            self.array = yVals1;
-            //[self performSelector:@selector(start) withObject:nil afterDelay:2.5];
-            if(i == self.array.count - 1)
-            {
-                bfisrt = YES;
-            }
-        }
-        else
-        {
-            if(i >= self.array.count)
-            {
-//                double mult = (range + 1);
-//                double val = (double) (arc4random_uniform(mult)) + 20;
-                //double val = range + arc4random() % 30;
-                JJWIndexRecords *reco = self.records[i];
-                double val = [reco.value doubleValue];
-                NSLog(@"---->>>%@",@(val));
-                [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
-            }
-        }
+        JJWIndexRecords *reco = self.records[i];
+        double val = [reco.value doubleValue];
+        NSLog(@"---->>>%@",@(val));
+        [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
-    self.array = yVals1;
     LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals1 label:@"DataSet 1"];
     set1.drawCubicEnabled = YES;
     set1.cubicIntensity = 0.2;
@@ -221,9 +163,19 @@
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:9.f]];
     [data setDrawValues:NO];
     
+    
     _chartView.data = data;
 }
 
+- (void)updatekLine:(JJWIndexRecords*)record
+{
+    LineChartData *data = (LineChartData*)self.chartView.data;
+    LineChartDataSet *set1 = (LineChartDataSet*)[data.dataSets lastObject];
+    ChartDataEntry *ent = [[ChartDataEntry alloc] initWithValue:3700 xIndex:self.records.count];
+    [self.records addObject:@"1"];
+    [set1 addEntry:ent];
+    self.chartView.data = data;
+}
 
 #pragma mark - Actions
 
@@ -261,9 +213,9 @@
 }
 -(void)handleMaxShowTimer:(NSTimer *)theTimer
 {
-    //NSLog(@"handleMaxShowTimer");
-    _sliderX.value += 1;
-    [self slidersValueChanged:nil];
+    NSLog(@"handleMaxShowTimer");
+    [self updatekLine:nil];
+    //[self slidersValueChanged:nil];
 }
 
 - (void)connectToSever
@@ -293,6 +245,9 @@
         NSString *result = [data lastObject];
         
         [self dealWithDataString:result];
+        [self setDataCount:self.records.count range:3800.0];
+        
+        [self start];
         NSLog(@"%@",result);
     }];
     
@@ -306,9 +261,41 @@
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:resultData options:NSJSONReadingMutableLeaves error:nil];
     NSArray *recordArray = dict[@"records"];
     NSArray *records = [JJWIndexRecords indexRecordsWithArray:recordArray];
-    self.records = records;
+    
+    self.testArray = records;
+    //[self.records addObjectsFromArray:records];
+    for(int i = 0; i < 120; ++i)
+    {
+        //[self.records removeObjectAtIndex:i];
+        [self.records addObject:records[i]];
+    }
+//    NSRange range = NSMakeRange(120, self.records.count - 120);
+    //[self.records removeObjectsInRange:range];
+    
+//    NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:range];
+//    [self.records removeObjectsAtIndexes:set];
     NSLog(@"dealWithDataString");
-    [self slidersValueChanged:nil];
+    //[self slidersValueChanged:nil];
+}
+
+- (NSArray*)displayTime
+{
+    if(_displayTime == nil)
+    {
+        _displayTime = @[@"9:30",@"10:00",@"10:30",@"11:00",
+                         @"11:30",@"13:30",@"14:00",@"14:30",
+                         @"15:00",@"15:30"];
+    }
+    return _displayTime;
+}
+
+- (NSMutableArray *)records
+{
+    if(_records == nil)
+    {
+        _records = [NSMutableArray array];
+    }
+    return _records;
 }
 
 - (void)optionTapped:(NSString *)key
