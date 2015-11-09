@@ -55,6 +55,8 @@
 @property (nonatomic, strong) NSArray *displayTime;
 @property (nonatomic, strong) NSArray *testArray;
 @property (nonatomic, strong) NSString *access_token;
+@property (nonatomic, copy) NSString *selleID;
+@property (nonatomic, copy) NSString *ID;
 @end
 
 @implementation CubicLineChartViewController
@@ -207,26 +209,55 @@
 
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
+        //NSLog(@"%@",responseObject);
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"%@",result);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
+    //[self getID];
+}
+
+
+- (IBAction)sellBtnClicked:(UIButton *)sender {
     
     [self getUserList];
 }
-- (IBAction)sellBtnClicked:(UIButton *)sender {
-    
+
+- (void)getID
+{
+    // IfDailyFree/Insert
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
-    NSDictionary *parameters = @{@"id" :@"1835",
-                                 };
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Insert"];
     NSString *accessToken = BEARER;
     accessToken = [accessToken stringByAppendingString:@" "];
     accessToken = [accessToken stringByAppendingString:self.access_token];
     
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        NSNumber *ID = responseObject[@"data"];
+        self.ID = [NSString stringWithFormat:@"^%@",ID];
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+
+- (void)sell
+{
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
+    NSDictionary *parameters = @{@"id" :self.selleID
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
@@ -235,18 +266,20 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
-
 }
-
 
 - (void)getUserList
 {
     //http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
     NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406";
 
+//    NSDictionary *parameters = @{@"process_status_id":@"1",
+//                                 
+//                                 
+//                                 };
     NSString *accessToken = BEARER;
     accessToken = [accessToken stringByAppendingString:@" "];
     accessToken = [accessToken stringByAppendingString:self.access_token];
@@ -254,8 +287,11 @@
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
-        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",result);
+//        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@",result);
+        NSDictionary *dict = [((NSArray*)responseObject[@"data"]) lastObject];
+        self.selleID = dict[@"id"];
+        [self sell];
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
@@ -302,6 +338,7 @@
         NSDictionary *dict = responseObject[@"data"];
         
         self.access_token = dict[@"access_token"];
+        [self getID];
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];

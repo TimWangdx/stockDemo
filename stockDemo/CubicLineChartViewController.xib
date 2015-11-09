@@ -53,11 +53,15 @@
                         <action selector="buyBtnClicked:" destination="-1" eventType="touchUpInside" id="OUE-uF-WlD"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3600" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2h-Qg-f9S">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3600" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2h-Qg-f9S">
                     <rect key="frame" x="130" y="41" width="114" height="21"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="9fu-tf-O1d"/>
+                        <constraint firstAttribute="width" constant="114" id="KdD-uT-VEu"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -66,7 +70,9 @@
             <constraints>
                 <constraint firstItem="Oqd-Ej-1xl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="3NA-if-rAO"/>
                 <constraint firstItem="Oqd-Ej-1xl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6Mc-iO-BuY"/>
+                <constraint firstItem="h2h-Qg-f9S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41" id="OZp-OV-UQ1"/>
                 <constraint firstItem="Zdz-nd-u7k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="4" id="QYu-uI-rC8"/>
+                <constraint firstItem="h2h-Qg-f9S" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gCH-1O-Pwl"/>
                 <constraint firstAttribute="trailing" secondItem="Zdz-nd-u7k" secondAttribute="trailing" constant="8" id="hkP-f4-aXC"/>
                 <constraint firstAttribute="trailing" secondItem="Oqd-Ej-1xl" secondAttribute="trailing" constant="20" id="mC3-xy-2CS"/>
             </constraints>
