@@ -10,6 +10,9 @@
 #import "Charts-Swift.h"
 #import "AnotherBarChartViewController.h"
 #import "CubicLineChartViewController.h"
+#import "AppDelegate.h"
+#import "JJWViewController1.h"
+
 @interface ViewController ()
 
 @end
@@ -31,4 +34,24 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (IBAction)bullBartleBtnClicked:(UIButton *)sender {
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    //[super touchesBegan:touches withEvent:event];
+    NSLog(@"ViewController touchesBegan");
+    
+    UIResponder *tt = self.nextResponder;
+    //NSLog(@"%@",tt);
+    
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    UIViewController *vc = app.window.rootViewController;
+    NSLog(@"%@",vc);
+    
+    JJWViewController1 *vvv = [[JJWViewController1 alloc]init];
+    vvv.view.backgroundColor = [UIColor redColor];
+    //[self.navigationController pushViewController:vvv animated:YES];
+    [self presentViewController:vvv animated:YES completion:nil];
+}
 @end

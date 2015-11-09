@@ -22,6 +22,7 @@
 		2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */; };
 		2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = 2125A3191BEC8692007363BF /* JJWIndexRecords.m */; };
 		21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */; };
+		21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4406E1BF09E5600C80689 /* JJWViewController1.m */; };
 		6829FCD8E620F38AC783C781 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB952623EF120460B403A26 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		2125A3191BEC8692007363BF /* JJWIndexRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWIndexRecords.m; sourceTree = "<group>"; };
 		21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utility.h"; sourceTree = "<group>"; };
 		21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utility.m"; sourceTree = "<group>"; };
+		21E4406D1BF09E5600C80689 /* JJWViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWViewController1.h; sourceTree = "<group>"; };
+		21E4406E1BF09E5600C80689 /* JJWViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWViewController1.m; sourceTree = "<group>"; };
 		4DB952623EF120460B403A26 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0BAB8E6B1CE94CB4B8C9A2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E00B2DCB361E7F7913BE8F8A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				2103B8191BEAF90500DED437 /* main.m */,
+				21E4406D1BF09E5600C80689 /* JJWViewController1.h */,
+				21E4406E1BF09E5600C80689 /* JJWViewController1.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */,
 				2103B84F1BEAFE8500DED437 /* AnotherBarChartViewController.m in Sources */,
 				2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */,
+				21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */,
 				2103B81D1BEAF90500DED437 /* AppDelegate.m in Sources */,
 				2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */,
 				2103B8521BEAFEB100DED437 /* DemoBaseViewController.m in Sources */,
