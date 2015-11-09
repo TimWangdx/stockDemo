@@ -36,4 +36,15 @@
     return self;
 }
 
+- (instancetype)initWithDictionary:(NSDictionary*)dict
+{
+    if(self = [super init])
+    {
+//        self.timeStamp = dict
+//        self.value = array[1];
+//        NSTimeInterval t = [self.timeStamp doubleValue] / 1000;
+//        self.time = [NSDate dateWithTimeIntervalSince1970:t];
+    }
+    return self;
+}
 @end

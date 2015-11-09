@@ -277,4 +277,21 @@
     return timeStr;
 }
 
++ (NSInteger)locationForTimeInterval:(NSString*)timeInterval
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYYMMdd"];
+    NSDate *currentDate = [NSDate date];
+    NSString *dayTime = [formatter stringFromDate:currentDate];
+    dayTime = [NSString stringWithFormat:@"%@ %@",dayTime, kTestNineHalf];
+    [formatter setDateFormat:@"YYYYMMdd HH:mm:ss"];
+    NSDate *nineOClock = [formatter dateFromString:dayTime];
+    NSTimeInterval ninwHalfTimeInterval = [nineOClock timeIntervalSince1970];
+    
+    NSTimeInterval newTimeInterval = [timeInterval doubleValue] / 1000;
+    NSInteger diff = (newTimeInterval - ninwHalfTimeInterval) / 60;
+    
+    return diff;
+}
+
 @end

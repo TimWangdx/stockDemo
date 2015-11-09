@@ -125,4 +125,14 @@ typedef NS_ENUM(NSInteger, NSDateConvertType)
  *  @return 秒数
  */
 + (NSString*)stringFromSomeTime:(NSString*)dayTime;
+
+
+/**
+ *  测试函数
+ *
+ *  @param timeInterval 时间戳
+ *
+ *  @return 暂定
+ */
++ (NSInteger)locationForTimeInterval:(NSString*)timeInterval;
 @end

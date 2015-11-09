@@ -16,8 +16,13 @@
 #import <Socket_IO_Client_Swift/Socket_IO_Client_Swift-Swift.h>
 #import "JJWIndexRecords.h"
 #import "NSDate+Utility.h"
+#import "AFNetworking.h"
 
 #define kCount          250
+
+#define kUrlPrefix          @"http://dev.jijinwan.com/jijinwan/"
+// 服务器 api 相关
+#define BEARER                  @"Bearer"
 
 @interface CubicLineSampleFillFormatter : NSObject <ChartFillFormatter>
 {
@@ -44,10 +49,12 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 
+@property (weak, nonatomic) IBOutlet UILabel *indexLabel;
 @property (nonatomic, strong) SocketIOClient *client;
 @property (nonatomic, strong) NSMutableArray *records;
 @property (nonatomic, strong) NSArray *displayTime;
 @property (nonatomic, strong) NSArray *testArray;
+@property (nonatomic, strong) NSString *access_token;
 @end
 
 @implementation CubicLineChartViewController
@@ -56,6 +63,7 @@
 {
     [super viewDidLoad];
     
+    [self login];
     [self connectToSever];
     
     self.title = @"Cubic Line Chart";
@@ -171,8 +179,8 @@
 {
     LineChartData *data = (LineChartData*)self.chartView.data;
     LineChartDataSet *set1 = (LineChartDataSet*)[data.dataSets lastObject];
-    ChartDataEntry *ent = [[ChartDataEntry alloc] initWithValue:3700 xIndex:self.records.count];
-    [self.records addObject:@"1"];
+    double value = [record.value doubleValue];
+    ChartDataEntry *ent = [[ChartDataEntry alloc] initWithValue:value xIndex:self.records.count - 1];
     [set1 addEntry:ent];
     self.chartView.data = data;
 }
@@ -186,7 +194,72 @@
     
     [self setDataCount:self.records.count range:3600.0];
 }
+- (IBAction)buyBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Buy"];
+    NSDictionary *parameters = @{@"id" :@"1835",
+                                 @"gold":@"1"
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
 
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+    
+    [self getUserList];
+}
+- (IBAction)sellBtnClicked:(UIButton *)sender {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
+    NSDictionary *parameters = @{@"id" :@"1835",
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+
+}
+
+
+- (void)getUserList
+{
+    //http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406";
+
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
 #pragma mark - ChartViewDelegate
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
@@ -218,13 +291,30 @@
     //[self slidersValueChanged:nil];
 }
 
+- (void)login
+{
+    //http://dev.jijinwan.com/jijinwan/User/Login?mobile=hjh&login_pwd=1&user_id=&_=1447038766477
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/User/Login?mobile=hjh&login_pwd=1&user_id=&_=1447038766477";
+    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dict = responseObject[@"data"];
+        
+        self.access_token = dict[@"access_token"];
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 - (void)connectToSever
 {
-    SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:@"120.26.209.1:9090" options:@{@"log": @NO, @"forcePolling": @YES}];
+    SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:@"120.26.209.1:9090" options:@{@"log": @YES, @"forcePolling": @YES}];
     self.client =socket;
     [socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket connected");
         [self.client emit:@"get_chart" withItems:nil];
+        //[self.client emit:@"IfTrade/GetListUser" withItems:nil];
     }];
     [socket on:@"error" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket error");
@@ -240,17 +330,28 @@
         //NSString *event = ack.
     }];
     
+    
     [socket on:@"get_chart" callback:^(NSArray* data, SocketAckEmitter* ack) {
         //NSString *event = ack.
         NSString *result = [data lastObject];
         
         [self dealWithDataString:result];
+        
         [self setDataCount:self.records.count range:3800.0];
         
-        [self start];
+        //[self start];
         NSLog(@"%@",result);
     }];
     
+    // chn_futures_chart_push_data
+    [socket on:@"chn_futures_chart_push_data" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        [self parsechn_futures_chart_push_data:data];
+    }];
+    
+    //chn_futures_real_info
+    [socket on:@"chn_futures_real_info" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        [self parsechn_futures_real_info:data];
+    }];
     [socket connect];
 
 }
@@ -263,12 +364,12 @@
     NSArray *records = [JJWIndexRecords indexRecordsWithArray:recordArray];
     
     self.testArray = records;
-    //[self.records addObjectsFromArray:records];
-    for(int i = 0; i < 120; ++i)
-    {
-        //[self.records removeObjectAtIndex:i];
-        [self.records addObject:records[i]];
-    }
+    [self.records addObjectsFromArray:records];
+//    for(int i = 0; i < 120; ++i)
+//    {
+//        //[self.records removeObjectAtIndex:i];
+//        [self.records addObject:records[i]];
+//    }
 //    NSRange range = NSMakeRange(120, self.records.count - 120);
     //[self.records removeObjectsInRange:range];
     
@@ -277,6 +378,27 @@
     NSLog(@"dealWithDataString");
     //[self slidersValueChanged:nil];
 }
+
+- (void)parsechn_futures_chart_push_data:(NSArray*)data
+{
+    NSDictionary *dict = [data lastObject];
+    NSArray *array = dict[@"records"];
+    array = [array lastObject];
+    NSInteger count = self.records.count;
+    JJWIndexRecords *record = [[JJWIndexRecords alloc]initWithArray:array];
+    [NSDate locationForTimeInterval:record.timeStamp];
+    [self.records addObject:record];
+    [self updatekLine:record];
+}
+
+- (void)parsechn_futures_real_info:(NSArray*)data
+{
+    NSDictionary *dict = [data lastObject];
+    NSNumber *newIndex = dict[@"New"];
+    
+    self.indexLabel.text = [NSString stringWithFormat:@"%@",newIndex];
+}
+
 
 - (NSArray*)displayTime
 {

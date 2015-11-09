@@ -13,6 +13,7 @@
 + (NSArray*)indexRecordsWithArray:(NSArray*)array;
 
 - (instancetype)initWithArray:(NSArray*)array;
+- (instancetype)initWithDictionary:(NSDictionary*)dict;
 
 @property (nonatomic, copy) NSString *timeStamp;
 @property (nonatomic, copy) NSString *value;
