@@ -287,7 +287,6 @@
 
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"%@",result);
         self.sellBtn.enabled = NO;
