@@ -46,8 +46,11 @@
 @property (nonatomic, strong) IBOutlet UISlider *sliderY;
 @property (nonatomic, strong) IBOutlet UITextField *sliderTextX;
 @property (nonatomic, strong) IBOutlet UITextField *sliderTextY;
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (weak, nonatomic) IBOutlet UIButton *sellBtn;
 
 @property (weak, nonatomic) IBOutlet UILabel *indexLabel;
 @property (nonatomic, strong) SocketIOClient *client;
@@ -64,6 +67,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.sellBtn.enabled = NO;
     
     [self login];
     [self connectToSever];
@@ -196,6 +201,27 @@
     
     [self setDataCount:self.records.count range:3600.0];
 }
+- (IBAction)buyFallBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Buy"];
+    NSDictionary *parameters = @{@"id" :@"1835",
+                                 @"gold":@"-1"
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        //NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+        self.sellBtn.enabled = YES;
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
 - (IBAction)buyBtnClicked:(UIButton *)sender {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -212,6 +238,7 @@
         //NSLog(@"%@",responseObject);
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"%@",result);
+        self.sellBtn.enabled = YES;
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
@@ -263,6 +290,7 @@
         NSLog(@"%@",responseObject);
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"%@",result);
+        self.sellBtn.enabled = NO;
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
@@ -432,8 +460,12 @@
 {
     NSDictionary *dict = [data lastObject];
     NSNumber *newIndex = dict[@"New"];
-    
     self.indexLabel.text = [NSString stringWithFormat:@"%@",newIndex];
+    NSNumber *hal = dict[@"hal"];
+    self.label1.text = [NSString stringWithFormat:@"%@",hal];
+    
+    NSNumber *halRate = dict[@"halRate"];
+    self.label2.text = [NSString stringWithFormat:@"%@%%",halRate];
 }
 
 

@@ -8,7 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CubicLineChartViewController">
             <connections>
                 <outlet property="chartView" destination="Oqd-Ej-1xl" id="tSA-aU-J9W"/>
-                <outlet property="indexLabel" destination="h2h-Qg-f9S" id="EPe-vw-Kgk"/>
+                <outlet property="indexLabel" destination="2x7-Cn-e0i" id="Gam-ok-eEi"/>
+                <outlet property="label1" destination="Usa-cZ-GXU" id="hRG-B1-eUS"/>
+                <outlet property="label2" destination="QM2-c4-ZsV" id="xjX-Vp-pEa"/>
+                <outlet property="sellBtn" destination="y5N-ib-rka" id="NK8-Un-7e4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,42 +40,59 @@
                         <constraint firstAttribute="height" constant="176" id="ekN-hl-8Tf"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkj-RV-r25">
+                    <rect key="frame" x="65" y="301" width="30" height="30"/>
+                    <animations/>
+                    <state key="normal" title="买涨"/>
+                    <connections>
+                        <action selector="buyBtnClicked:" destination="-1" eventType="touchUpInside" id="OUE-uF-WlD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ko1-nj-tyJ">
+                    <rect key="frame" x="162" y="301" width="30" height="30"/>
+                    <animations/>
+                    <state key="normal" title="买跌"/>
+                    <connections>
+                        <action selector="buyBtnClicked:" destination="-1" eventType="touchUpInside" id="Fsz-wN-s4M"/>
+                        <action selector="buyFallBtnClicked:" destination="-1" eventType="touchUpInside" id="bHb-Rd-8Gg"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="58.52" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usa-cZ-GXU">
+                    <rect key="frame" x="110" y="41" width="51" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.54%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QM2-c4-ZsV">
+                    <rect key="frame" x="193" y="41" width="45" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3800" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2x7-Cn-e0i">
+                    <rect key="frame" x="33" y="40" width="62" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5N-ib-rka">
-                    <rect key="frame" x="240" y="301" width="30" height="30"/>
+                    <rect key="frame" x="246" y="301" width="30" height="30"/>
                     <animations/>
                     <state key="normal" title="卖出"/>
                     <connections>
                         <action selector="sellBtnClicked:" destination="-1" eventType="touchUpInside" id="0bN-lK-jf0"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkj-RV-r25">
-                    <rect key="frame" x="65" y="301" width="30" height="30"/>
-                    <animations/>
-                    <state key="normal" title="买入"/>
-                    <connections>
-                        <action selector="buyBtnClicked:" destination="-1" eventType="touchUpInside" id="OUE-uF-WlD"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3600" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2h-Qg-f9S">
-                    <rect key="frame" x="130" y="41" width="114" height="21"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="9fu-tf-O1d"/>
-                        <constraint firstAttribute="width" constant="114" id="KdD-uT-VEu"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Oqd-Ej-1xl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="3NA-if-rAO"/>
                 <constraint firstItem="Oqd-Ej-1xl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6Mc-iO-BuY"/>
-                <constraint firstItem="h2h-Qg-f9S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41" id="OZp-OV-UQ1"/>
                 <constraint firstItem="Zdz-nd-u7k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="4" id="QYu-uI-rC8"/>
-                <constraint firstItem="h2h-Qg-f9S" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gCH-1O-Pwl"/>
                 <constraint firstAttribute="trailing" secondItem="Zdz-nd-u7k" secondAttribute="trailing" constant="8" id="hkP-f4-aXC"/>
                 <constraint firstAttribute="trailing" secondItem="Oqd-Ej-1xl" secondAttribute="trailing" constant="20" id="mC3-xy-2CS"/>
             </constraints>
