@@ -73,7 +73,7 @@
     [self login];
     [self connectToSever];
     
-    self.title = @"Cubic Line Chart";
+    self.title = @"掘金场";
     
     self.options = @[
                      @{@"key": @"toggleValues", @"label": @"Toggle Values"},

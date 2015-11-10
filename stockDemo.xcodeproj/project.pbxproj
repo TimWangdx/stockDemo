@@ -15,8 +15,6 @@
 		2103B8281BEAF90500DED437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2103B8261BEAF90500DED437 /* LaunchScreen.storyboard */; };
 		2103B8331BEAF90500DED437 /* stockDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8321BEAF90500DED437 /* stockDemoTests.m */; };
 		2103B83E1BEAF90500DED437 /* stockDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B83D1BEAF90500DED437 /* stockDemoUITests.m */; };
-		2103B84E1BEAFE8500DED437 /* AnotherBarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */; };
-		2103B84F1BEAFE8500DED437 /* AnotherBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */; };
 		2103B8521BEAFEB100DED437 /* DemoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */; };
 		2103B8561BEB343E00DED437 /* CubicLineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */; };
 		2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */; };
@@ -62,9 +60,6 @@
 		2103B8391BEAF90500DED437 /* stockDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stockDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2103B83D1BEAF90500DED437 /* stockDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = stockDemoUITests.m; sourceTree = "<group>"; };
 		2103B83F1BEAF90500DED437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnotherBarChartViewController.xib; sourceTree = "<group>"; };
-		2103B84C1BEAFE8500DED437 /* AnotherBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnotherBarChartViewController.h; sourceTree = "<group>"; };
-		2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnotherBarChartViewController.m; sourceTree = "<group>"; };
 		2103B8501BEAFEB100DED437 /* DemoBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoBaseViewController.h; sourceTree = "<group>"; };
 		2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoBaseViewController.m; sourceTree = "<group>"; };
 		2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CubicLineChartViewController.xib; sourceTree = "<group>"; };
@@ -198,9 +193,6 @@
 			children = (
 				2103B8501BEAFEB100DED437 /* DemoBaseViewController.h */,
 				2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */,
-				2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */,
-				2103B84C1BEAFE8500DED437 /* AnotherBarChartViewController.h */,
-				2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */,
 				2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */,
 				2103B8541BEB343E00DED437 /* CubicLineChartViewController.h */,
 				2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */,
@@ -347,7 +339,6 @@
 				2103B8281BEAF90500DED437 /* LaunchScreen.storyboard in Resources */,
 				2103B8251BEAF90500DED437 /* Assets.xcassets in Resources */,
 				2103B8231BEAF90500DED437 /* Main.storyboard in Resources */,
-				2103B84E1BEAFE8500DED437 /* AnotherBarChartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +413,6 @@
 			files = (
 				2103B8201BEAF90500DED437 /* ViewController.m in Sources */,
 				21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */,
-				2103B84F1BEAFE8500DED437 /* AnotherBarChartViewController.m in Sources */,
 				21474CCA1BF1843E001CB1DE /* JJWBullFightingViewController.m in Sources */,
 				2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */,
 				21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */,

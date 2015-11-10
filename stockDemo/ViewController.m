@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "Charts-Swift.h"
-#import "AnotherBarChartViewController.h"
 #import "CubicLineChartViewController.h"
 #import "AppDelegate.h"
 #import "JJWViewController1.h"
