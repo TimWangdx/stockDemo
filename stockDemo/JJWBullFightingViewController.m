@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSString *access_token;
 @property (nonatomic, copy) NSString *selleID;
 @property (nonatomic, copy) NSString *ID;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
 @end
 
 @implementation JJWBullFightingViewController
@@ -42,7 +44,11 @@
 
 - (IBAction)matchPlayerBtnClicked:(UIButton *)sender {
     NSLog(@"斗牛场匹配对手- %@",@(sender.tag));
-    [MBProgressHUD showMessage:@"正在匹配对手"];
+//    self.hud = [MBProgressHUD showMessage:@"正在匹配对手"];
+//    NSString *gold = [NSString stringWithFormat:@"%@",@(sender.tag)];
+//    NSArray *items = @[self.access_token,gold];
+//    [self.client emit:@"add_user" withItems:items];
+    [self goToBartleRoom];
 }
 
 - (void)login
@@ -62,6 +68,13 @@
     }];
 }
 
+- (void)goToBartleRoom
+{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc =[sb instantiateViewControllerWithIdentifier:@"JJWBullRoomViewController"];
+    [self .navigationController pushViewController:vc animated:YES];
+}
+
 - (void)connectToSever
 {
     SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:@"120.26.209.1:9090" options:@{@"log": @YES, @"forcePolling": @YES}];
@@ -79,7 +92,21 @@
     [socket on:@"reconnect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket reconnect");
     }];
-
+    [socket on:@"add_user" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"add_user");
+    }];
+    //OnStart
+    [socket on:@"OnStart" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"OnStart");
+    }];
+    //rem_user
+    [socket on:@"rem_user" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"rem_user");
+    }];
+    // chn_IfSolo_EnterRoom
+    [socket on:@"chn_IfSolo_EnterRoom" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"chn_IfSolo_EnterRoom");
+    }];
     [socket connect];
     
 }

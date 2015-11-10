@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -43,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="1031" y="306"/>
         </scene>
-        <!--Bull Fighting View Controller-->
+        <!--斗牛场匹配-->
         <scene sceneID="NVf-Ld-Wq6">
             <objects>
-                <viewController storyboardIdentifier="JJWBullFightingViewController" id="ki4-Kz-RbI" customClass="JJWBullFightingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JJWBullFightingViewController" id="ki4-Kz-RbI" userLabel="斗牛场匹配" customClass="JJWBullFightingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W1k-es-KGr"/>
                         <viewControllerLayoutGuide type="bottom" id="Lgc-aP-TkK"/>
@@ -95,6 +96,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mO-Ij-Gaf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1673" y="306"/>
+        </scene>
+        <!--斗牛场-->
+        <scene sceneID="hj5-Zx-gWk">
+            <objects>
+                <viewController storyboardIdentifier="JJWBullRoomViewController" title="斗牛场" id="llk-bG-ap8" userLabel="斗牛场" customClass="JJWBullRoomViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UD3-sf-GCr"/>
+                        <viewControllerLayoutGuide type="bottom" id="4hC-Um-duN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4eg-sC-Nwu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfK-cP-NsR" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="60" width="560" height="177"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="177" id="AmO-c9-4cX"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKh-d4-1hA">
+                                <rect key="frame" x="65" y="263" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="买涨"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5by-BO-6hZ">
+                                <rect key="frame" x="161" y="263" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="买跌"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-P7-RYs">
+                                <rect key="frame" x="243" y="263" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="平仓"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-ES-duV">
+                                <rect key="frame" x="0.0" y="315" width="600" height="285"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="236" id="7C3-Pj-qrj"/>
+                                    <constraint firstAttribute="height" constant="285" id="9tP-l2-hUK"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7C3-Pj-qrj"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4hC-Um-duN" firstAttribute="top" secondItem="Xlw-ES-duV" secondAttribute="bottom" id="6s5-Xf-5E0"/>
+                            <constraint firstItem="bfK-cP-NsR" firstAttribute="leading" secondItem="4eg-sC-Nwu" secondAttribute="leading" constant="20" id="Bmz-2b-8bd"/>
+                            <constraint firstItem="bfK-cP-NsR" firstAttribute="top" secondItem="UD3-sf-GCr" secondAttribute="bottom" constant="40" id="FQd-EP-kUF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xlw-ES-duV" secondAttribute="trailing" constant="20" id="a9y-Ob-hVh"/>
+                            <constraint firstItem="Xlw-ES-duV" firstAttribute="leading" secondItem="4eg-sC-Nwu" secondAttribute="leadingMargin" constant="20" id="nFb-V2-g7K"/>
+                            <constraint firstAttribute="trailing" secondItem="bfK-cP-NsR" secondAttribute="trailing" constant="20" id="rfj-i0-sgf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="bfK-cP-NsR" id="4kv-Or-ID5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jR9-bv-pM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2415" y="-51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hbb-r1-iU9">

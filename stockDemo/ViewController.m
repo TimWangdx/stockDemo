@@ -44,17 +44,17 @@
 {
     //[super touchesBegan:touches withEvent:event];
     NSLog(@"ViewController touchesBegan");
-    
-    UIResponder *tt = self.nextResponder;
-    //NSLog(@"%@",tt);
-    
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    UIViewController *vc = app.window.rootViewController;
-    NSLog(@"%@",vc);
-    
-    JJWViewController1 *vvv = [[JJWViewController1 alloc]init];
-    vvv.view.backgroundColor = [UIColor redColor];
-    //[self.navigationController pushViewController:vvv animated:YES];
-    [self presentViewController:vvv animated:YES completion:nil];
+//    
+//    UIResponder *tt = self.nextResponder;
+//    //NSLog(@"%@",tt);
+//    
+//    AppDelegate *app = [UIApplication sharedApplication].delegate;
+//    UIViewController *vc = app.window.rootViewController;
+//    NSLog(@"%@",vc);
+//    
+//    JJWViewController1 *vvv = [[JJWViewController1 alloc]init];
+//    vvv.view.backgroundColor = [UIColor redColor];
+//    //[self.navigationController pushViewController:vvv animated:YES];
+//    [self presentViewController:vvv animated:YES completion:nil];
 }
 @end
