@@ -55,25 +55,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVx-y3-0Sv">
+                            <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVx-y3-0Sv">
                                 <rect key="frame" x="111" y="99" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="100"/>
+                                <connections>
+                                    <action selector="matchPlayerBtnClicked:" destination="ki4-Kz-RbI" eventType="touchUpInside" id="HsY-nT-rvb"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2t-Lo-1Cw">
+                            <button opaque="NO" tag="1000" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2t-Lo-1Cw">
                                 <rect key="frame" x="245" y="99" width="35" height="30"/>
                                 <animations/>
                                 <state key="normal" title="1000"/>
+                                <connections>
+                                    <action selector="matchPlayerBtnClicked:" destination="ki4-Kz-RbI" eventType="touchUpInside" id="HNl-Eg-jxE"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-MU-OD1">
+                            <button opaque="NO" tag="500" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-MU-OD1">
                                 <rect key="frame" x="112" y="164" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="500"/>
+                                <connections>
+                                    <action selector="matchPlayerBtnClicked:" destination="ki4-Kz-RbI" eventType="touchUpInside" id="Ffh-dq-eWN"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lg2-Fa-Pwh">
+                            <button opaque="NO" tag="5000" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lg2-Fa-Pwh">
                                 <rect key="frame" x="244" y="164" width="37" height="30"/>
                                 <animations/>
                                 <state key="normal" title="5000"/>
+                                <connections>
+                                    <action selector="matchPlayerBtnClicked:" destination="ki4-Kz-RbI" eventType="touchUpInside" id="9eK-ZQ-523"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
