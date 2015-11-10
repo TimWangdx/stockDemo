@@ -12,6 +12,7 @@
 #import "CubicLineChartViewController.h"
 #import "AppDelegate.h"
 #import "JJWViewController1.h"
+#import "JJWBullFightingViewController.h"
 
 @interface ViewController ()
 
@@ -35,6 +36,9 @@
 }
 
 - (IBAction)bullBartleBtnClicked:(UIButton *)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc =[sb instantiateViewControllerWithIdentifier:@"JJWBullFightingViewController"];
+    [self .navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

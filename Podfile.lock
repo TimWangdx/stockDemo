@@ -21,16 +21,19 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Charts (2.1.6)
+  - MBProgressHUD (0.9.1)
   - Socket.IO-Client-Swift (4.1.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - Charts
+  - MBProgressHUD (~> 0.9.1)
   - Socket.IO-Client-Swift (~> 4.1.1)
 
 SPEC CHECKSUMS:
   AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
   Charts: 5e1e5ac23898e5b09d226a2fc3e9d86bc281937e
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Socket.IO-Client-Swift: 2620dbb779edbbd0bc0cac96c053ca7c35aba652
 
 COCOAPODS: 0.39.0

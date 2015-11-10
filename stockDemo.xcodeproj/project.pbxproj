@@ -21,6 +21,8 @@
 		2103B8561BEB343E00DED437 /* CubicLineChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */; };
 		2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */; };
 		2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = 2125A3191BEC8692007363BF /* JJWIndexRecords.m */; };
+		21474CCA1BF1843E001CB1DE /* JJWBullFightingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21474CC91BF1843E001CB1DE /* JJWBullFightingViewController.m */; };
+		21474CCD1BF1884B001CB1DE /* MBProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21474CCB1BF1884B001CB1DE /* MBProgressHUD+Utility.m */; };
 		21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */; };
 		21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4406E1BF09E5600C80689 /* JJWViewController1.m */; };
 		6829FCD8E620F38AC783C781 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB952623EF120460B403A26 /* Pods.framework */; };
@@ -70,6 +72,10 @@
 		2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CubicLineChartViewController.m; sourceTree = "<group>"; };
 		2125A3181BEC8692007363BF /* JJWIndexRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWIndexRecords.h; sourceTree = "<group>"; };
 		2125A3191BEC8692007363BF /* JJWIndexRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWIndexRecords.m; sourceTree = "<group>"; };
+		21474CC81BF1843E001CB1DE /* JJWBullFightingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWBullFightingViewController.h; sourceTree = "<group>"; };
+		21474CC91BF1843E001CB1DE /* JJWBullFightingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWBullFightingViewController.m; sourceTree = "<group>"; };
+		21474CCB1BF1884B001CB1DE /* MBProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Utility.m"; sourceTree = "<group>"; };
+		21474CCC1BF1884B001CB1DE /* MBProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Utility.h"; sourceTree = "<group>"; };
 		21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utility.h"; sourceTree = "<group>"; };
 		21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utility.m"; sourceTree = "<group>"; };
 		21E4406D1BF09E5600C80689 /* JJWViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWViewController1.h; sourceTree = "<group>"; };
@@ -130,16 +136,9 @@
 		2103B8171BEAF90500DED437 /* stockDemo */ = {
 			isa = PBXGroup;
 			children = (
-				21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */,
-				21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */,
-				2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */,
-				2103B8541BEB343E00DED437 /* CubicLineChartViewController.h */,
-				2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */,
-				2103B8501BEAFEB100DED437 /* DemoBaseViewController.h */,
-				2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */,
-				2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */,
-				2103B84C1BEAFE8500DED437 /* AnotherBarChartViewController.h */,
-				2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */,
+				21474CC71BF183C5001CB1DE /* 斗牛场 */,
+				21474CC61BF183AD001CB1DE /* 掘金场 */,
+				21474CC51BF1833E001CB1DE /* Tools */,
 				2103B81B1BEAF90500DED437 /* AppDelegate.h */,
 				2103B81C1BEAF90500DED437 /* AppDelegate.m */,
 				2103B81E1BEAF90500DED437 /* ViewController.h */,
@@ -181,6 +180,41 @@
 				2103B83F1BEAF90500DED437 /* Info.plist */,
 			);
 			path = stockDemoUITests;
+			sourceTree = "<group>";
+		};
+		21474CC51BF1833E001CB1DE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				21474CCB1BF1884B001CB1DE /* MBProgressHUD+Utility.m */,
+				21474CCC1BF1884B001CB1DE /* MBProgressHUD+Utility.h */,
+				21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */,
+				21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		21474CC61BF183AD001CB1DE /* 掘金场 */ = {
+			isa = PBXGroup;
+			children = (
+				2103B8501BEAFEB100DED437 /* DemoBaseViewController.h */,
+				2103B8511BEAFEB100DED437 /* DemoBaseViewController.m */,
+				2103B84B1BEAFE8500DED437 /* AnotherBarChartViewController.xib */,
+				2103B84C1BEAFE8500DED437 /* AnotherBarChartViewController.h */,
+				2103B84D1BEAFE8500DED437 /* AnotherBarChartViewController.m */,
+				2103B8531BEB343E00DED437 /* CubicLineChartViewController.xib */,
+				2103B8541BEB343E00DED437 /* CubicLineChartViewController.h */,
+				2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */,
+			);
+			name = "掘金场";
+			sourceTree = "<group>";
+		};
+		21474CC71BF183C5001CB1DE /* 斗牛场 */ = {
+			isa = PBXGroup;
+			children = (
+				21474CC81BF1843E001CB1DE /* JJWBullFightingViewController.h */,
+				21474CC91BF1843E001CB1DE /* JJWBullFightingViewController.m */,
+			);
+			name = "斗牛场";
 			sourceTree = "<group>";
 		};
 		497C74B61F5318249CE31D57 /* Pods */ = {
@@ -389,8 +423,10 @@
 				2103B8201BEAF90500DED437 /* ViewController.m in Sources */,
 				21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */,
 				2103B84F1BEAFE8500DED437 /* AnotherBarChartViewController.m in Sources */,
+				21474CCA1BF1843E001CB1DE /* JJWBullFightingViewController.m in Sources */,
 				2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */,
 				21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */,
+				21474CCD1BF1884B001CB1DE /* MBProgressHUD+Utility.m in Sources */,
 				2103B81D1BEAF90500DED437 /* AppDelegate.m in Sources */,
 				2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */,
 				2103B8521BEAFEB100DED437 /* DemoBaseViewController.m in Sources */,
