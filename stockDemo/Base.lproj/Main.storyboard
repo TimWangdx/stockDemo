@@ -34,6 +34,14 @@
                                     <action selector="bullBartleBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wxh-0f-aA3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PS-CJ-iIY">
+                                <rect key="frame" x="43" y="227" width="45" height="30"/>
+                                <animations/>
+                                <state key="normal" title="夺宝场"/>
+                                <connections>
+                                    <action selector="treasureBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2mN-EU-uL9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -212,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jR9-bv-pM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2415" y="-51"/>
+            <point key="canvasLocation" x="2369" y="306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hbb-r1-iU9">
@@ -232,6 +240,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uls-CV-WMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="97" y="966"/>
+        </scene>
+        <!--Treasure View Controller-->
+        <scene sceneID="xoD-Gf-RmK">
+            <objects>
+                <viewController storyboardIdentifier="JJWTreasureViewController" id="DIE-W5-yAY" customClass="JJWTreasureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NvL-Er-TVx"/>
+                        <viewControllerLayoutGuide type="bottom" id="2RL-aO-Ave"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QKB-Bv-dyr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3800" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWC-JF-c8a">
+                                <rect key="frame" x="20" y="53" width="70" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="56.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNm-C3-Pka">
+                                <rect key="frame" x="124" y="53" width="70" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12.3%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAD-wt-qQZ">
+                                <rect key="frame" x="216" y="53" width="70" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cea-hV-tSN" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="20" y="113" width="560" height="236"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="236" id="n1g-NQ-uB1"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysz-pE-2pV">
+                                <rect key="frame" x="64" y="400" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="买涨"/>
+                                <connections>
+                                    <action selector="buyUpBtnClicked:" destination="DIE-W5-yAY" eventType="touchUpInside" id="hoI-Un-3sT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-d6-YOz">
+                                <rect key="frame" x="135" y="400" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="买跌"/>
+                                <connections>
+                                    <action selector="buyFallBtnClicked:" destination="DIE-W5-yAY" eventType="touchUpInside" id="elt-nR-Zvq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ps-iA-0p2">
+                                <rect key="frame" x="216" y="400" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="卖出"/>
+                                <connections>
+                                    <action selector="sellBtnClicked:" destination="DIE-W5-yAY" eventType="touchUpInside" id="Yuq-VM-XI0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cea-hV-tSN" firstAttribute="trailing" secondItem="QKB-Bv-dyr" secondAttribute="trailingMargin" id="IFr-6T-Lwx"/>
+                            <constraint firstItem="Cea-hV-tSN" firstAttribute="top" secondItem="NvL-Er-TVx" secondAttribute="bottom" constant="93" id="im7-MG-8x0"/>
+                            <constraint firstItem="Cea-hV-tSN" firstAttribute="leading" secondItem="QKB-Bv-dyr" secondAttribute="leadingMargin" id="lhK-kp-Mag"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chartView" destination="Cea-hV-tSN" id="TF9-4A-jUq"/>
+                        <outlet property="indexLabel" destination="jWC-JF-c8a" id="CAz-pm-YW6"/>
+                        <outlet property="label1" destination="BNm-C3-Pka" id="HDu-ls-JmB"/>
+                        <outlet property="label2" destination="rAD-wt-qQZ" id="3Ww-E2-NHT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exO-1l-KSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031" y="992"/>
         </scene>
     </scenes>
 </document>

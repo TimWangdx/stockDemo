@@ -53,6 +53,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self getID];
+    self.title = @"斗牛场";
     [self setupChartsView];
     [self dealWithEvent];
     [self getCharts];

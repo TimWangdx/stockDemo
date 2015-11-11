@@ -36,6 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self login];
+    self.title = @"斗牛场";
     [self connectToSever];
 }
 

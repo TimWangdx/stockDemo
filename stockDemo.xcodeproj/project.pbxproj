@@ -23,6 +23,7 @@
 		21474CCA1BF1843E001CB1DE /* JJWBullFightingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21474CC91BF1843E001CB1DE /* JJWBullFightingViewController.m */; };
 		21474CCD1BF1884B001CB1DE /* MBProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21474CCB1BF1884B001CB1DE /* MBProgressHUD+Utility.m */; };
 		21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */; };
+		21E346211BF3441000ECAF39 /* JJWTreasureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E346201BF3441000ECAF39 /* JJWTreasureViewController.m */; };
 		21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E4406E1BF09E5600C80689 /* JJWViewController1.m */; };
 		6829FCD8E620F38AC783C781 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB952623EF120460B403A26 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,8 @@
 		21474CCC1BF1884B001CB1DE /* MBProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Utility.h"; sourceTree = "<group>"; };
 		21776DB31BEC8BA400E3C735 /* NSDate+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utility.h"; sourceTree = "<group>"; };
 		21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utility.m"; sourceTree = "<group>"; };
+		21E3461F1BF3441000ECAF39 /* JJWTreasureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWTreasureViewController.h; sourceTree = "<group>"; };
+		21E346201BF3441000ECAF39 /* JJWTreasureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWTreasureViewController.m; sourceTree = "<group>"; };
 		21E4406D1BF09E5600C80689 /* JJWViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWViewController1.h; sourceTree = "<group>"; };
 		21E4406E1BF09E5600C80689 /* JJWViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWViewController1.m; sourceTree = "<group>"; };
 		4DB952623EF120460B403A26 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +137,7 @@
 		2103B8171BEAF90500DED437 /* stockDemo */ = {
 			isa = PBXGroup;
 			children = (
+				21E3461E1BF342BA00ECAF39 /* 夺宝场 */,
 				21474CC71BF183C5001CB1DE /* 斗牛场 */,
 				21474CC61BF183AD001CB1DE /* 掘金场 */,
 				21474CC51BF1833E001CB1DE /* Tools */,
@@ -212,6 +216,15 @@
 				21318B751BF1B9B5003CE555 /* JJWBullRoomViewController.m */,
 			);
 			name = "斗牛场";
+			sourceTree = "<group>";
+		};
+		21E3461E1BF342BA00ECAF39 /* 夺宝场 */ = {
+			isa = PBXGroup;
+			children = (
+				21E3461F1BF3441000ECAF39 /* JJWTreasureViewController.h */,
+				21E346201BF3441000ECAF39 /* JJWTreasureViewController.m */,
+			);
+			name = "夺宝场";
 			sourceTree = "<group>";
 		};
 		497C74B61F5318249CE31D57 /* Pods */ = {
@@ -419,6 +432,7 @@
 				2103B8201BEAF90500DED437 /* ViewController.m in Sources */,
 				21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */,
 				21474CCA1BF1843E001CB1DE /* JJWBullFightingViewController.m in Sources */,
+				21E346211BF3441000ECAF39 /* JJWTreasureViewController.m in Sources */,
 				2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */,
 				21E4406F1BF09E5600C80689 /* JJWViewController1.m in Sources */,
 				21474CCD1BF1884B001CB1DE /* MBProgressHUD+Utility.m in Sources */,
