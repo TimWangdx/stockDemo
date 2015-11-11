@@ -10,6 +10,14 @@
 #import "DemoBaseViewController.h"
 #import "Charts.h"
 
+#import <Socket_IO_Client_Swift/Socket_IO_Client_Swift-Swift.h>
+
 @interface JJWBullRoomViewController : DemoBaseViewController
+
+@property (nonatomic, strong) SocketIOClient *client;
+
+@property (nonatomic, strong) NSString *access_token;
+@property (nonatomic, copy) NSString *selleID;
+@property (nonatomic, copy) NSString *ID;
 
 @end

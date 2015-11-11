@@ -12,6 +12,7 @@
 #import "JJWIndexRecords.h"
 #import "NSDate+Utility.h"
 #import "AFNetworking.h"
+#import "JJWBullRoomViewController.h"
 
 #define kUrlPrefix          @"http://dev.jijinwan.com/jijinwan/"
 // 服务器 api 相关
@@ -44,11 +45,10 @@
 
 - (IBAction)matchPlayerBtnClicked:(UIButton *)sender {
     NSLog(@"斗牛场匹配对手- %@",@(sender.tag));
-//    self.hud = [MBProgressHUD showMessage:@"正在匹配对手"];
-//    NSString *gold = [NSString stringWithFormat:@"%@",@(sender.tag)];
-//    NSArray *items = @[self.access_token,gold];
-//    [self.client emit:@"add_user" withItems:items];
-    [self goToBartleRoom];
+    self.hud = [MBProgressHUD showMessage:@"正在匹配对手"];
+    NSString *gold = [NSString stringWithFormat:@"%@",@(sender.tag)];
+    NSArray *items = @[self.access_token,gold];
+    [self.client emit:@"add_user" withItems:items];
 }
 
 - (void)login
@@ -56,13 +56,19 @@
     //http://dev.jijinwan.com/jijinwan/User/Login?mobile=hjh&login_pwd=1&user_id=&_=1447038766477
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSString *url = @"http://dev.jijinwan.com/jijinwan/User/Login?mobile=hjh&login_pwd=1&user_id=&_=1447038766477";
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    //15202150609
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/User/Login";
+    NSDictionary *parameters = @{@"mobile":@"15088629305",
+                                 @"login_pwd":@"123456",
+                                 @"_" : [NSDate stringSince1970]
+                                 };
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
         NSDictionary *dict = responseObject[@"data"];
         
         self.access_token = dict[@"access_token"];
-        [self getID];
+        //[self getID];
+        [self.client emit:@"set_user_id" withItems:@[self.access_token]];
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
@@ -71,7 +77,10 @@
 - (void)goToBartleRoom
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc =[sb instantiateViewControllerWithIdentifier:@"JJWBullRoomViewController"];
+    JJWBullRoomViewController *vc =[sb instantiateViewControllerWithIdentifier:@"JJWBullRoomViewController"];
+    vc.client = self.client;
+    vc.access_token = self.access_token;
+    vc.ID = self.ID;
     [self .navigationController pushViewController:vc animated:YES];
 }
 
@@ -81,7 +90,7 @@
     self.client =socket;
     [socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket connected");
-        [self.client emit:@"get_chart" withItems:nil];
+        //[self.client emit:@"get_chart" withItems:nil];
     }];
     [socket on:@"error" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket error");
@@ -105,7 +114,25 @@
     }];
     // chn_IfSolo_EnterRoom
     [socket on:@"chn_IfSolo_EnterRoom" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        NSLog(@"chn_IfSolo_EnterRoom");
+        NSLog(@"------>>>>>>chn_IfSolo_EnterRoom");
+        [self.hud hide:YES];
+        [self goToBartleRoom];
+    }];
+    //chn_IfSolo_LeaveRoom
+    [socket on:@"chn_IfSolo_LeaveRoom" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"chn_IfSolo_LeaveRoom");
+    }];
+    //chn_IfSolo_PutRollingFeed
+    [socket on:@"chn_IfSolo_PutRollingFeed" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"chn_IfSolo_PutRollingFeed");
+    }];
+    //challenge
+    [socket on:@"challenge" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"challenge");
+    }];
+    //
+    [socket on:@"set_user_id" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSLog(@"set_user_id");
     }];
     [socket connect];
     
