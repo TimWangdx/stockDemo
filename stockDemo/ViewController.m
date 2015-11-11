@@ -12,8 +12,14 @@
 #import "AppDelegate.h"
 #import "JJWViewController1.h"
 #import "JJWBullFightingViewController.h"
+#import "NSDate+Utility.h"
+#import "AFNetworking.h"
+#import "JJWBullFightingViewController.h"
 
 @interface ViewController ()
+@property (nonatomic, copy) NSString *user_id;
+
+@property (nonatomic, strong) NSString *access_token;
 
 @end
 
@@ -22,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self login];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,8 +43,33 @@
 
 - (IBAction)bullBartleBtnClicked:(UIButton *)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc =[sb instantiateViewControllerWithIdentifier:@"JJWBullFightingViewController"];
+    JJWBullFightingViewController *vc =[sb instantiateViewControllerWithIdentifier:@"JJWBullFightingViewController"];
+    vc.access_token = self.access_token;
+    vc.user_id = self.user_id;
     [self .navigationController pushViewController:vc animated:YES];
+}
+
+- (void)login
+{
+    //http://dev.jijinwan.com/jijinwan/User/Login?mobile=hjh&login_pwd=1&user_id=&_=1447038766477
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //15202150609
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/User/Login";
+    //NSString *url = @"http://www.jijinwan.com/jijinwan/User/Login";
+    NSDictionary *parameters = @{@"mobile":@"15088629305",
+                                 @"login_pwd":@"123456",
+                                 @"_" : [NSDate stringSince1970]
+                                 };
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dict = responseObject[@"data"];
+        
+        self.access_token = dict[@"access_token"];
+        self.user_id = [NSString stringWithFormat:@"%@",dict[@"id"]];
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

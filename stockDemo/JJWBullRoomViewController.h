@@ -19,5 +19,9 @@
 @property (nonatomic, strong) NSString *access_token;
 @property (nonatomic, copy) NSString *selleID;
 @property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *user_id;
+@property (nonatomic, copy) NSString *mySoloID;
+@property (nonatomic, copy) NSString *playerID;
+@property (nonatomic, copy) NSString *gameID;
 
 @end

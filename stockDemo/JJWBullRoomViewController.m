@@ -37,8 +37,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (nonatomic, strong) NSArray *displayTime;
+@property (weak, nonatomic) IBOutlet UITextView *messageView1;
+@property (weak, nonatomic) IBOutlet UITextView *messageView2;
 @property (weak, nonatomic) IBOutlet LineChartView *chartView;
 @property (nonatomic, strong) NSMutableArray *records;
+
+
+@property (nonatomic, assign) BOOL bPlayerBuy;
+@property (nonatomic, assign) BOOL bMeBuy;
 @end
 
 @implementation JJWBullRoomViewController
@@ -46,7 +52,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self getID];
+    //[self getID];
     [self setupChartsView];
     [self dealWithEvent];
     [self getCharts];
@@ -186,7 +192,83 @@
     [self.client on:@"chn_futures_real_info" callback:^(NSArray* data, SocketAckEmitter* ack) {
         [self parsechn_futures_real_info:data];
     }];
+    
+    // chn_IfSolo_BuySell
+    
+    [self.client on:@"chn_IfSolo_BuySell" callback:^(NSArray* data, SocketAckEmitter* ack) {
+        NSDictionary *dict = [data lastObject];
+        NSLog(@"dict = %@",dict);
 
+        NSNumber *user = dict[@"user_id"];
+        NSString *userID = [NSString stringWithFormat:@"%@",user];
+        if(![userID isEqualToString:self.user_id])
+        {
+            if(self.bPlayerBuy)
+            {
+                self.bPlayerBuy = NO;
+                NSNumber *p = dict[@"profit"];
+                NSString *profit = [NSString stringWithFormat:@"%@",p];
+                
+                NSString *playerName = dict[@"user_nick_name"];
+                if(playerName == nil || playerName.length == 0)
+                {
+                    playerName = dict[@"user_mobile"];
+                }
+                NSString *text = self.messageView1.text;
+                NSString *info = [NSString stringWithFormat:@"%@   %@ 成功卖出一手\n",profit,playerName];
+                text = [text stringByAppendingString:info];
+                self.messageView1.text = text;
+            }
+            else
+            {
+                self.bPlayerBuy = YES;
+                NSString *playerName = dict[@"user_nick_name"];
+                if(playerName == nil || playerName.length == 0)
+                {
+                    playerName = dict[@"user_mobile"];
+                }
+                
+                NSString *text = self.messageView1.text;
+                NSString *info = [NSString stringWithFormat:@"%@ 成功买入一手\n",playerName];
+                text = [text stringByAppendingString:info];
+                self.messageView1.text = text;
+            }
+        }
+        else
+        {
+            if(self.bMeBuy)
+            {
+                self.bMeBuy = NO;
+                NSNumber *p = dict[@"profit"];
+                NSString *profit = [NSString stringWithFormat:@"%@",p];
+                
+                NSString *playerName = dict[@"user_nick_name"];
+                if(![playerName isKindOfClass:[NSString class]] || playerName == nil || playerName.length == 0)
+                {
+                    playerName = dict[@"user_mobile"];
+                }
+                NSString *text = self.messageView2.text;
+                NSString *info = [NSString stringWithFormat:@"%@   %@ 成功卖出一手\n",profit,playerName];
+                text = [text stringByAppendingString:info];
+                self.messageView2.text = text;
+            }
+            else
+            {
+                self.bMeBuy = YES;
+                NSString *playerName = dict[@"user_nick_name"];
+                if(![playerName isKindOfClass:[NSString class]] || playerName == nil || playerName.length == 0)
+                {
+                    playerName = dict[@"user_mobile"];
+                }
+                
+                NSString *text = self.messageView2.text;
+                NSString *info = [NSString stringWithFormat:@"%@ 成功买入一手\n",playerName];
+                text = [text stringByAppendingString:info];
+                self.messageView2.text = text;
+            }
+        }
+
+    }];
 }
 
 - (void)dealWithDataString:(NSString*)result
@@ -241,6 +323,38 @@
 
 #pragma mark - 网络请求
 
+- (void)getUserList
+{
+    //http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser";
+    
+    NSDictionary *parameters = @{@"process_status_id":@"1",
+                                @"ref_id" : self.mySoloID,
+                                @"ref_table":@"if_solo_user",
+                                 @"match_dates":@"",
+                                 @"match_datee" :@"",
+                                 @"page_size":@"0",
+                                 @"page_index":@"",
+                                 @"_":[NSDate stringSince1970]
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dict = [((NSArray*)responseObject[@"data"]) lastObject];
+        self.selleID = dict[@"id"];
+        //[self sell];
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 - (void)getID
 {
     // IfDailyFree/Insert
@@ -267,8 +381,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfSoloUser/Buy"];
-    NSDictionary *parameters = @{@"id" :self.ID,
-                                 @"gold":@"1"
+    NSDictionary *parameters = @{@"id" :self.mySoloID,
+                                 @"gold_earn":@"1"
                                  };
     NSString *accessToken = BEARER;
     accessToken = [accessToken stringByAppendingString:@" "];
@@ -278,6 +392,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         //NSLog(@"%@",responseObject);
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        [self getUserList];
         NSLog(@"%@",result);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
@@ -285,11 +400,62 @@
 
 }
 - (IBAction)buyFallBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfSoloUser/Buy"];
+    NSDictionary *parameters = @{@"id" :self.mySoloID,
+                                 @"gold_earn":@"-1"
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        //NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        [self getUserList];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (IBAction)closeAPositionBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfSoloUser/Sell"];
+    NSDictionary *parameters = @{@"id" :self.selleID
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (IBAction)giveUp:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfSolo/End"];
+    NSDictionary *parameters = @{@"id" :self.gameID
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 #pragma mark - ChartViewDelegate

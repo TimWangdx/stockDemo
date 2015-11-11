@@ -133,7 +133,7 @@
                                     <action selector="buyFallBtnClicked:" destination="llk-bG-ap8" eventType="touchUpInside" id="6Xp-AF-59d"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-P7-RYs">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-P7-RYs">
                                 <rect key="frame" x="242" y="313" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="平仓"/>
@@ -141,22 +141,6 @@
                                     <action selector="closeAPositionBtnClicked:" destination="llk-bG-ap8" eventType="touchUpInside" id="RVl-vk-58W"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="对手操作消息" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-ES-duV">
-                                <rect key="frame" x="0.0" y="351" width="600" height="249"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="236" id="7C3-Pj-qrj"/>
-                                    <constraint firstAttribute="height" constant="240" id="9tP-l2-hUK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="7C3-Pj-qrj"/>
-                                    </mask>
-                                </variation>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3800" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mz4-lZ-A5J">
                                 <rect key="frame" x="28" y="66" width="67" height="21"/>
                                 <animations/>
@@ -183,20 +167,38 @@
                                 <animations/>
                                 <state key="normal" title="认输"/>
                                 <connections>
-                                    <action selector="closeAPositionBtnClicked:" destination="llk-bG-ap8" eventType="touchUpInside" id="Pg6-kw-Dss"/>
                                     <action selector="giveUp:" destination="llk-bG-ap8" eventType="touchUpInside" id="jDS-pf-gT8"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fyG-rI-GeA">
+                                <rect key="frame" x="20" y="360" width="245" height="232"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8JE-UF-VHp">
+                                <rect key="frame" x="300" y="360" width="280" height="220"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4hC-Um-duN" firstAttribute="top" secondItem="Xlw-ES-duV" secondAttribute="bottom" id="6s5-Xf-5E0"/>
+                            <constraint firstItem="8JE-UF-VHp" firstAttribute="trailing" secondItem="4eg-sC-Nwu" secondAttribute="trailingMargin" id="8Bk-ph-nqV"/>
                             <constraint firstItem="bfK-cP-NsR" firstAttribute="leading" secondItem="4eg-sC-Nwu" secondAttribute="leading" constant="20" id="Bmz-2b-8bd"/>
+                            <constraint firstItem="fyG-rI-GeA" firstAttribute="leading" secondItem="4eg-sC-Nwu" secondAttribute="leadingMargin" id="FEK-QT-3eT"/>
                             <constraint firstItem="bfK-cP-NsR" firstAttribute="top" secondItem="UD3-sf-GCr" secondAttribute="bottom" constant="100" id="FQd-EP-kUF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Xlw-ES-duV" secondAttribute="trailing" constant="20" id="a9y-Ob-hVh"/>
-                            <constraint firstItem="Xlw-ES-duV" firstAttribute="leading" secondItem="4eg-sC-Nwu" secondAttribute="leadingMargin" constant="20" id="nFb-V2-g7K"/>
+                            <constraint firstItem="8JE-UF-VHp" firstAttribute="leading" secondItem="fyG-rI-GeA" secondAttribute="trailing" id="HSO-Df-yAD"/>
+                            <constraint firstItem="4hC-Um-duN" firstAttribute="top" secondItem="fyG-rI-GeA" secondAttribute="bottom" constant="8" id="Sgi-tC-frG"/>
+                            <constraint firstItem="8JE-UF-VHp" firstAttribute="top" secondItem="bfK-cP-NsR" secondAttribute="bottom" constant="63" id="YQc-RV-XIt"/>
+                            <constraint firstItem="4hC-Um-duN" firstAttribute="top" secondItem="8JE-UF-VHp" secondAttribute="bottom" constant="20" id="ZM4-RJ-6qL"/>
+                            <constraint firstItem="fyG-rI-GeA" firstAttribute="top" secondItem="oX0-P7-RYs" secondAttribute="bottom" constant="17" id="bnU-5b-MEt"/>
                             <constraint firstAttribute="trailing" secondItem="bfK-cP-NsR" secondAttribute="trailing" constant="20" id="rfj-i0-sgf"/>
+                            <constraint firstItem="8JE-UF-VHp" firstAttribute="width" secondItem="fyG-rI-GeA" secondAttribute="width" id="w7L-nT-W9W"/>
                         </constraints>
                     </view>
                     <connections>
@@ -204,6 +206,8 @@
                         <outlet property="indexLabel" destination="mz4-lZ-A5J" id="ASk-VQ-xA6"/>
                         <outlet property="label1" destination="047-Yp-U9w" id="i6W-2I-beV"/>
                         <outlet property="label2" destination="giG-72-ama" id="6Gr-cQ-o6y"/>
+                        <outlet property="messageView1" destination="fyG-rI-GeA" id="H0U-fO-13T"/>
+                        <outlet property="messageView2" destination="8JE-UF-VHp" id="WKQ-62-inU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jR9-bv-pM9" userLabel="First Responder" sceneMemberID="firstResponder"/>
