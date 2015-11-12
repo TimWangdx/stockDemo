@@ -20,6 +20,7 @@
 		2103B8571BEB343E00DED437 /* CubicLineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2103B8551BEB343E00DED437 /* CubicLineChartViewController.m */; };
 		2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = 2125A3191BEC8692007363BF /* JJWIndexRecords.m */; };
 		21318B761BF1B9B5003CE555 /* JJWBullRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21318B751BF1B9B5003CE555 /* JJWBullRoomViewController.m */; };
+		213317461BF4590600936CC1 /* JJWApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 213317451BF4590600936CC1 /* JJWApplyViewController.m */; };
 		21474CCA1BF1843E001CB1DE /* JJWBullFightingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21474CC91BF1843E001CB1DE /* JJWBullFightingViewController.m */; };
 		21474CCD1BF1884B001CB1DE /* MBProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21474CCB1BF1884B001CB1DE /* MBProgressHUD+Utility.m */; };
 		21776DB51BEC8BA400E3C735 /* NSDate+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 21776DB41BEC8BA400E3C735 /* NSDate+Utility.m */; };
@@ -71,6 +72,8 @@
 		2125A3191BEC8692007363BF /* JJWIndexRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWIndexRecords.m; sourceTree = "<group>"; };
 		21318B741BF1B9B5003CE555 /* JJWBullRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWBullRoomViewController.h; sourceTree = "<group>"; };
 		21318B751BF1B9B5003CE555 /* JJWBullRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWBullRoomViewController.m; sourceTree = "<group>"; };
+		213317441BF4590600936CC1 /* JJWApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWApplyViewController.h; sourceTree = "<group>"; };
+		213317451BF4590600936CC1 /* JJWApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWApplyViewController.m; sourceTree = "<group>"; };
 		21474CC81BF1843E001CB1DE /* JJWBullFightingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJWBullFightingViewController.h; sourceTree = "<group>"; };
 		21474CC91BF1843E001CB1DE /* JJWBullFightingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJWBullFightingViewController.m; sourceTree = "<group>"; };
 		21474CCB1BF1884B001CB1DE /* MBProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Utility.m"; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 			children = (
 				21E3461F1BF3441000ECAF39 /* JJWTreasureViewController.h */,
 				21E346201BF3441000ECAF39 /* JJWTreasureViewController.m */,
+				213317441BF4590600936CC1 /* JJWApplyViewController.h */,
+				213317451BF4590600936CC1 /* JJWApplyViewController.m */,
 			);
 			name = "夺宝场";
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 				2125A31A1BEC8692007363BF /* JJWIndexRecords.m in Sources */,
 				21318B761BF1B9B5003CE555 /* JJWBullRoomViewController.m in Sources */,
 				2103B8521BEAFEB100DED437 /* DemoBaseViewController.m in Sources */,
+				213317461BF4590600936CC1 /* JJWApplyViewController.m in Sources */,
 				2103B81A1BEAF90500DED437 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

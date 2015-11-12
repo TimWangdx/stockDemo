@@ -105,6 +105,61 @@
             </objects>
             <point key="canvasLocation" x="1673" y="306"/>
         </scene>
+        <!--Apply View Controller-->
+        <scene sceneID="R3l-ut-jE6">
+            <objects>
+                <viewController storyboardIdentifier="JJWApplyViewController" id="5u9-PQ-D6w" customClass="JJWApplyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fsz-ih-Usq"/>
+                        <viewControllerLayoutGuide type="bottom" id="xS8-h3-HTD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uKh-Zy-wIY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cB-oy-bfT">
+                                <rect key="frame" x="227" y="171" width="93" height="30"/>
+                                <animations/>
+                                <state key="normal" title="报名"/>
+                                <connections>
+                                    <action selector="applyAMBtnClicked:" destination="5u9-PQ-D6w" eventType="touchUpInside" id="9dI-wj-Vsa"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="上午场" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nt8-yh-yyd">
+                                <rect key="frame" x="64" y="175" width="111" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下午场" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYG-2C-uzc">
+                                <rect key="frame" x="64" y="261" width="111" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fX-c1-hiP">
+                                <rect key="frame" x="227" y="257" width="93" height="30"/>
+                                <animations/>
+                                <state key="normal" title="报名"/>
+                                <connections>
+                                    <action selector="applyPMBtnClicked:" destination="5u9-PQ-D6w" eventType="touchUpInside" id="eb9-O8-Zdv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="applyAMBtn" destination="7cB-oy-bfT" id="7rE-KX-ZYF"/>
+                        <outlet property="applyPMBtn" destination="2fX-c1-hiP" id="mcE-c6-M6U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FBn-OW-nb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1673" y="992"/>
+        </scene>
         <!--斗牛场-->
         <scene sceneID="hj5-Zx-gWk">
             <objects>
