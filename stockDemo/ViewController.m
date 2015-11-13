@@ -73,7 +73,7 @@
     //15202150609
     NSString *url = @"http://dev.jijinwan.com/jijinwan/User/Login";
     //NSString *url = @"http://www.jijinwan.com/jijinwan/User/Login";
-    NSDictionary *parameters = @{@"mobile":@"15088629305",
+    NSDictionary *parameters = @{@"mobile":@"15202150609",
                                  @"login_pwd":@"123456",
                                  @"_" : [NSDate stringSince1970]
                                  };
@@ -92,6 +92,7 @@
 {
     //[super touchesBegan:touches withEvent:event];
     NSLog(@"ViewController touchesBegan");
+    [self test];
 //    
 //    UIResponder *tt = self.nextResponder;
 //    //NSLog(@"%@",tt);
@@ -104,5 +105,22 @@
 //    vvv.view.backgroundColor = [UIColor redColor];
 //    //[self.navigationController pushViewController:vvv animated:YES];
 //    [self presentViewController:vvv animated:YES completion:nil];
+}
+
+- (void)test
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = @"http://127.0.0.1/demo/welcome.php";
+    NSDictionary *parameters = @{@"name":@"wang",
+                                 @"email":@"906819823@qq.com"
+                                 };
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end
