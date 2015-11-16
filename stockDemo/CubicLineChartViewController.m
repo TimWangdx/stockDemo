@@ -57,7 +57,7 @@
 @property (nonatomic, strong) NSMutableArray *records;
 @property (nonatomic, strong) NSArray *displayTime;
 @property (nonatomic, strong) NSArray *testArray;
-@property (nonatomic, strong) NSString *access_token;
+//@property (nonatomic, strong) NSString *access_token;
 @property (nonatomic, copy) NSString *selleID;
 @property (nonatomic, copy) NSString *ID;
 @end
@@ -70,7 +70,8 @@
     
     self.sellBtn.enabled = NO;
     
-    [self login];
+    //[self login];
+    [self getID];
     [self connectToSever];
     
     self.title = @"掘金场";
@@ -205,7 +206,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Buy"];
-    NSDictionary *parameters = @{@"id" :@"1835",
+    NSDictionary *parameters = @{@"id" :self.ID,
                                  @"gold":@"-1"
                                  };
     NSString *accessToken = BEARER;
@@ -226,7 +227,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Buy"];
-    NSDictionary *parameters = @{@"id" :@"1835",
+    NSDictionary *parameters = @{@"id" :self.ID,
                                  @"gold":@"1"
                                  };
     NSString *accessToken = BEARER;
@@ -301,18 +302,23 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     //NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
-    NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406";
-
-//    NSDictionary *parameters = @{@"process_status_id":@"1",
-//                                 
-//                                 
-//                                 };
+//    NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406";
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser";
+    NSDictionary *parameters = @{@"process_status_id":@"1",
+                                 @"ref_id" : self.ID,
+                                 @"ref_table":@"if_daily_free",
+                                 @"match_dates":@"",
+                                 @"match_datee" :@"",
+                                 @"page_size":@"0",
+                                 @"page_index":@"0",
+                                 @"_":[NSDate stringSince1970]
+                                 };
     NSString *accessToken = BEARER;
     accessToken = [accessToken stringByAppendingString:@" "];
     accessToken = [accessToken stringByAppendingString:self.access_token];
     
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
 //        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
 //        NSLog(@"%@",result);

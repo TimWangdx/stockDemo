@@ -17,6 +17,7 @@
 #import "JJWBullFightingViewController.h"
 #import "JJWTreasureViewController.h"
 #import "JJWApplyViewController.h"
+#import "CubicLineChartViewController.h"
 
 @interface ViewController ()
 @property (nonatomic, copy) NSString *user_id;
@@ -40,6 +41,8 @@
 - (IBAction)btnClicked:(UIButton *)sender {
     //AnotherBarChartViewController *vc = [[AnotherBarChartViewController alloc]init];
     CubicLineChartViewController *vc = [[CubicLineChartViewController alloc]init];
+    vc.access_token = self.access_token;
+    vc.user_id = self.user_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

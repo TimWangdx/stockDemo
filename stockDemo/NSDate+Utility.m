@@ -294,4 +294,43 @@
     return diff;
 }
 
++ (BOOL)isAM
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYYMMdd"];
+    NSDate *currentDate = [NSDate date];
+    NSString *dayTime = [formatter stringFromDate:currentDate];
+    dayTime = [NSString stringWithFormat:@"%@ %@",dayTime, KTWELVEOCLOCK];
+    [formatter setDateFormat:@"YYYYMMdd HH:mm:ss"];
+    NSDate *twelveocock = [formatter dateFromString:dayTime];
+    
+    if([currentDate compare:twelveocock] == NSOrderedAscending)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
++ (BOOL)isEarlyThanSomeTime:(NSString*)someTime
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYYMMdd"];
+    NSDate *currentDate = [NSDate date];
+    NSString *dayTime = [formatter stringFromDate:currentDate];
+    dayTime = [NSString stringWithFormat:@"%@ %@",dayTime, someTime];
+    [formatter setDateFormat:@"YYYYMMdd HH:mm"];
+    NSDate *someTimeClock = [formatter dateFromString:dayTime];
+    
+    if([currentDate compare:someTimeClock] == NSOrderedAscending)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
 @end

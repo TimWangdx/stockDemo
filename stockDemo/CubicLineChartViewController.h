@@ -17,4 +17,8 @@
 
 @interface CubicLineChartViewController : DemoBaseViewController
 
+@property (nonatomic, copy) NSString *user_id;
+
+@property (nonatomic, strong) NSString *access_token;
+
 @end

@@ -39,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 
-
+@property (nonatomic, copy) NSString *selleID;
 @property (nonatomic, strong) SocketIOClient *client;
 @property (nonatomic, strong) NSMutableArray *records;
 @property (nonatomic, strong) NSArray *displayTime;
@@ -144,7 +144,7 @@
     self.label1.text = [NSString stringWithFormat:@"%@",hal];
     
     NSNumber *halRate = dict[@"halRate"];
-    self.label2.text = [NSString stringWithFormat:@"%@%%",halRate];
+    self.label2.text = [NSString stringWithFormat:@"%.2lf%%",[halRate doubleValue]];
 }
 
 - (void)updatekLine:(JJWIndexRecords*)record
@@ -168,12 +168,114 @@
 }
 
 - (IBAction)buyUpBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfStockMMUser/Buy"];
+    NSDictionary *parameters = @{@"id" :[NSString stringWithFormat:@"%@",self.if_stock_money_mm_id],
+                                 @"point":@"1"
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        //NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        //[self getUserList];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+
 }
 - (IBAction)buyFallBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfStockMMUser/Buy"];
+    NSDictionary *parameters = @{@"id" :[NSString stringWithFormat:@"%@",self.if_stock_money_mm_id],
+                                 @"point":@"-1"
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        //NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        //[self getUserList];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (IBAction)sellBtnClicked:(UIButton *)sender {
+    [self getUserList];
 }
 
+- (void)sell
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfStockMMUser/Sell"];
+    NSDictionary *parameters = @{@"id" :self.selleID
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        //NSLog(@"%@",responseObject);
+        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        //[self getUserList];
+        NSLog(@"%@",result);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+- (void)getUserList
+{
+    //http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser?process_status_id=1&ref_table=if_daily_free&ref_id=1835&match_dates=&match_datee=&page_size=0&page_index=0&_=1447039578406
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Sell"];
+    NSString *url = @"http://dev.jijinwan.com/jijinwan/IfTrade/GetListUser";
+    
+    NSDictionary *parameters = @{@"process_status_id":@"1",
+                                 @"ref_id" : self.if_stock_money_mm_id,
+                                 @"ref_table":@"if_stock_mm_user",
+                                 @"match_dates":@"",
+                                 @"match_datee" :@"",
+                                 @"page_size":@"0",
+                                 @"page_index":@"0",
+                                 @"_":[NSDate stringSince1970]
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *dict = [((NSArray*)responseObject[@"data"]) lastObject];
+        self.selleID = dict[@"id"];
+        [self sell];
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+- (void)getOneUser
+{
+    
+}
+
+- (void)GetRankList
+{
+    
+}
 -(void)setupChartsView
 {
     self.options = @[

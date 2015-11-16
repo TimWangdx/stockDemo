@@ -135,4 +135,8 @@ typedef NS_ENUM(NSInteger, NSDateConvertType)
  *  @return 暂定
  */
 + (NSInteger)locationForTimeInterval:(NSString*)timeInterval;
+
+
++ (BOOL)isAM;
++ (BOOL)isEarlyThanSomeTime:(NSString*)someTime;
 @end

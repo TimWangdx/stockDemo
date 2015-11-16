@@ -16,5 +16,5 @@
 @property (nonatomic, copy) NSString *user_id;
 
 @property (nonatomic, strong) NSString *access_token;
-
+@property (nonatomic, copy) NSNumber *if_stock_money_mm_id;
 @end
