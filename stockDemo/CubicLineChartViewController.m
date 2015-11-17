@@ -437,8 +437,8 @@
     
     self.testArray = records;
     [self.records addObjectsFromArray:records];
-    NSRange range = NSMakeRange(220, self.records.count - 220);
-    [self.records removeObjectsInRange:(range)];
+    //NSRange range = NSMakeRange(220, self.records.count - 220);
+    //[self.records removeObjectsInRange:(range)];
 //    for(int i = 0; i < 120; ++i)
 //    {
 //        //[self.records removeObjectAtIndex:i];

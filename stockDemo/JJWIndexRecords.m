@@ -17,10 +17,10 @@
     for(NSArray *arr in array)
     {
         JJWIndexRecords *records = [[JJWIndexRecords alloc]initWithArray:arr];
-        //if([NSDate isLaterThanNineHalfOClock:records.time])
-        //{
+        if([NSDate isLaterThanNineHalfOClock:records.time])
+        {
             [models addObject:records];   
-        //}
+        }
     }
     return models;
 }

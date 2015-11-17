@@ -11,6 +11,7 @@
 #import <Socket_IO_Client_Swift/Socket_IO_Client_Swift-Swift.h>
 #import "JJWIndexRecords.h"
 #import "NSDate+Utility.h"
+#import "MBProgressHUD+Utility.h"
 #import "AFNetworking.h"
 
 #define kCount          250
@@ -43,6 +44,8 @@
 @property (nonatomic, strong) SocketIOClient *client;
 @property (nonatomic, strong) NSMutableArray *records;
 @property (nonatomic, strong) NSArray *displayTime;
+
+@property (nonatomic, assign) BOOL bInitCharViewData;
 @end
 
 @implementation JJWTreasureViewController
@@ -95,14 +98,19 @@
     }];
     [self.client on:@"get_chart" callback:^(NSArray* data, SocketAckEmitter* ack) {
         //NSString *event = ack.
-        NSString *result = [data lastObject];
-        
-        [self dealWithDataString:result];
-        
-        [self setDataCount:self.records.count range:2600.0];
-        
-        //[self start];
-        NSLog(@"%@",result);
+        if(!self.bInitCharViewData)
+        {
+            self.bInitCharViewData = YES;
+            NSString *result = [data lastObject];
+            
+            [self dealWithDataString:result];
+            
+            [self setDataCount:self.records.count range:3800.0];
+            
+            //[self start];
+            NSLog(@"%@",result);
+        }
+
     }];
     // chn_futures_chart_push_data
     [self.client on:@"chn_futures_chart_push_data" callback:^(NSArray* data, SocketAckEmitter* ack) {
@@ -169,7 +177,7 @@
 
 - (IBAction)buyUpBtnClicked:(UIButton *)sender {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfStockMMUser/Buy"];
     NSDictionary *parameters = @{@"id" :[NSString stringWithFormat:@"%@",self.if_stock_money_mm_id],
                                  @"point":@"1"
@@ -179,18 +187,27 @@
     accessToken = [accessToken stringByAppendingString:self.access_token];
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        //NSLog(@"%@",responseObject);
-        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",responseObject);
+        //NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         //[self getUserList];
-        NSLog(@"%@",result);
+        NSNumber *bSuccess = responseObject[@"success"];
+        if([bSuccess isEqualToNumber:@(YES)])
+        {
+            [MBProgressHUD showSuccess:@"成功买入一笔"];
+        }
+        else
+        {
+            [MBProgressHUD showError:@"买入失败"];
+        }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
+        [MBProgressHUD showError:@"买入失败"];
     }];
 
 }
 - (IBAction)buyFallBtnClicked:(UIButton *)sender {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfStockMMUser/Buy"];
     NSDictionary *parameters = @{@"id" :[NSString stringWithFormat:@"%@",self.if_stock_money_mm_id],
                                  @"point":@"-1"
@@ -201,11 +218,22 @@
     
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        //NSLog(@"%@",responseObject);
-        NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",responseObject);
+        //NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         //[self getUserList];
-        NSLog(@"%@",result);
+        //NSLog(@"%@",result);
+        NSNumber *bSuccess = responseObject[@"success"];
+        if([bSuccess isEqualToNumber:@(YES)])
+        {
+            [MBProgressHUD showSuccess:@"成功买入一笔"];
+        }
+        else
+        {
+            [MBProgressHUD showError:@"买入失败"];
+        }
+
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        [MBProgressHUD showError:@"买入失败"];
         NSLog(@"%@",error);
     }];
 }
@@ -230,8 +258,18 @@
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         //[self getUserList];
         NSLog(@"%@",result);
+        NSNumber *bSuccess = responseObject[@"success"];
+        if([bSuccess isEqualToNumber:@(YES)])
+        {
+            [MBProgressHUD showSuccess:@"成功卖出一笔"];
+        }
+        else
+        {
+            [MBProgressHUD showError:@"卖出失败"];
+        }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
+        [MBProgressHUD showError:@"卖出失败"];
     }];
 }
 
@@ -313,7 +351,7 @@
     
     ChartYAxis *yAxis = _chartView.leftAxis;
     yAxis.enabled = YES;
-    yAxis.customAxisMin = 2300;
+    yAxis.customAxisMin = 3500;
     yAxis.startAtZeroEnabled = NO;
     [yAxis setLabelCount:3];
     yAxis.labelTextColor = [UIColor redColor];
