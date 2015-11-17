@@ -337,7 +337,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysz-pE-2pV">
-                                <rect key="frame" x="105" y="357" width="30" height="30"/>
+                                <rect key="frame" x="69" y="357" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="买涨"/>
                                 <connections>
@@ -345,7 +345,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-d6-YOz">
-                                <rect key="frame" x="176" y="357" width="30" height="30"/>
+                                <rect key="frame" x="140" y="357" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="买跌"/>
                                 <connections>
@@ -353,9 +353,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ps-iA-0p2">
-                                <rect key="frame" x="257" y="357" width="30" height="30"/>
+                                <rect key="frame" x="221" y="357" width="30" height="30"/>
                                 <animations/>
-                                <state key="normal" title="卖出"/>
+                                <state key="normal" title="平仓"/>
                                 <connections>
                                     <action selector="sellBtnClicked:" destination="DIE-W5-yAY" eventType="touchUpInside" id="Yuq-VM-XI0"/>
                                 </connections>

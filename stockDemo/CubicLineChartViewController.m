@@ -94,8 +94,8 @@
     _chartView.delegate = self;
     
     [_chartView setViewPortOffsetsWithLeft:20.f top:0.f right:0.f bottom:20.f];
-    _chartView.backgroundColor = [UIColor colorWithRed:104/255.f green:241/255.f blue:175/255.f alpha:1.f];
-
+//    _chartView.backgroundColor = [UIColor colorWithRed:104/255.f green:241/255.f blue:175/255.f alpha:1.f];
+    _chartView.backgroundColor = [UIColor whiteColor];
     _chartView.descriptionText = @"";
     _chartView.noDataTextDescription = @"You need to provide data for the chart.";
     
@@ -117,6 +117,8 @@
     [yAxis setLabelCount:3];
     yAxis.labelTextColor = [UIColor redColor];
     yAxis.labelPosition = YAxisLabelPositionInsideChart;
+    yAxis.drawGridLinesEnabled = YES;
+    yAxis.gridColor = [UIColor lightGrayColor];
     
     _chartView.rightAxis.enabled = NO;
     _chartView.legend.enabled = NO;
@@ -168,12 +170,12 @@
     set1.circleRadius = 4.0;
     [set1 setCircleColor:UIColor.whiteColor];
     set1.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-    [set1 setColor:UIColor.whiteColor];
-    set1.fillColor = [UIColor whiteColor];
-    set1.fillAlpha = 0.5f;
-    set1.drawHorizontalHighlightIndicatorEnabled = NO;
+    [set1 setColor:[UIColor lightGrayColor]];
+    //set1.fillColor = [UIColor whiteColor];
+    //set1.fillAlpha = 0.5f;
+    set1.drawHorizontalHighlightIndicatorEnabled = YES;
     set1.fillFormatter = [[CubicLineSampleFillFormatter alloc] init];
-    set1.drawFilledEnabled = YES;
+    //set1.drawFilledEnabled = YES;
     
     LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSet:set1];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:9.f]];
@@ -267,7 +269,7 @@
         
         NSLog(@"%@",responseObject);
         NSNumber *ID = responseObject[@"data"];
-        self.ID = [NSString stringWithFormat:@"^%@",ID];
+        self.ID = [NSString stringWithFormat:@"%@",ID];
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
@@ -435,6 +437,8 @@
     
     self.testArray = records;
     [self.records addObjectsFromArray:records];
+    NSRange range = NSMakeRange(220, self.records.count - 220);
+    [self.records removeObjectsInRange:(range)];
 //    for(int i = 0; i < 120; ++i)
 //    {
 //        //[self.records removeObjectAtIndex:i];

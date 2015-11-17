@@ -177,7 +177,6 @@
     NSString *accessToken = BEARER;
     accessToken = [accessToken stringByAppendingString:@" "];
     accessToken = [accessToken stringByAppendingString:self.access_token];
-    
     [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         //NSLog(@"%@",responseObject);
