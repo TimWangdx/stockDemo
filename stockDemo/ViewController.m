@@ -73,10 +73,12 @@
     //http://dev.jijinwan.com/jijinwan/User/Login?mobile=hjh&login_pwd=1&user_id=&_=1447038766477
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    //15202150609
+    // 15202150609
+    // 15088629305
+    // 15158087572
     NSString *url = @"http://dev.jijinwan.com/jijinwan/User/Login";
     //NSString *url = @"http://www.jijinwan.com/jijinwan/User/Login";
-    NSDictionary *parameters = @{@"mobile":@"15202150609",
+    NSDictionary *parameters = @{@"mobile":@"15158087572",
                                  @"login_pwd":@"123456",
                                  @"_" : [NSDate stringSince1970]
                                  };

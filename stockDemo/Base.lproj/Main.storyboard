@@ -353,11 +353,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ps-iA-0p2">
-                                <rect key="frame" x="221" y="357" width="30" height="30"/>
+                                <rect key="frame" x="213" y="357" width="30" height="30"/>
                                 <animations/>
                                 <state key="normal" title="平仓"/>
                                 <connections>
                                     <action selector="sellBtnClicked:" destination="DIE-W5-yAY" eventType="touchUpInside" id="Yuq-VM-XI0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2v6-lk-kPy">
+                                <rect key="frame" x="275" y="357" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="重置"/>
+                                <connections>
+                                    <action selector="resetBtnClicked:" destination="DIE-W5-yAY" eventType="touchUpInside" id="Mjb-lS-n4i"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -374,6 +382,7 @@
                         <outlet property="indexLabel" destination="jWC-JF-c8a" id="CAz-pm-YW6"/>
                         <outlet property="label1" destination="BNm-C3-Pka" id="HDu-ls-JmB"/>
                         <outlet property="label2" destination="rAD-wt-qQZ" id="3Ww-E2-NHT"/>
+                        <outlet property="resetBtn" destination="2v6-lk-kPy" id="ObO-3L-6LG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="exO-1l-KSy" userLabel="First Responder" sceneMemberID="firstResponder"/>

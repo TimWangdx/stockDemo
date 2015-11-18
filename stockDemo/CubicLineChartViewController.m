@@ -51,6 +51,7 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (weak, nonatomic) IBOutlet UIButton *sellBtn;
+@property (weak, nonatomic) IBOutlet UIButton *resetBtnClicked;
 
 @property (weak, nonatomic) IBOutlet UILabel *indexLabel;
 @property (nonatomic, strong) SocketIOClient *client;
@@ -252,6 +253,25 @@
 - (IBAction)sellBtnClicked:(UIButton *)sender {
     
     [self getUserList];
+}
+- (IBAction)resetBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfDailyFree/Reborn"];
+    NSDictionary *parameters = @{@"id" :self.ID,
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 - (void)getID

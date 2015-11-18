@@ -13,6 +13,7 @@
 #import "NSDate+Utility.h"
 #import "AFNetworking.h"
 #import "JJWTreasureViewController.h"
+#import "MBProgressHUD+Utility.h"
 
 // 服务器 api 相关
 #define BEARER                  @"Bearer"
@@ -77,7 +78,7 @@
         self.applyAMBtn.enabled = NO;
         if([self.if_stock_money_mm_id integerValue] > 0)
         {
-            [self.applyAMBtn setTitle:@"已报名" forState:UIControlStateNormal];
+            [self.applyPMBtn setTitle:@"已报名" forState:UIControlStateNormal];
             self.applyAMBtn.enabled = NO;
             
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -161,9 +162,19 @@
     [manager POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
         NSLog(@"%@",responseObject);
+        NSNumber *bSuccess = responseObject[@"success"];
+        if([bSuccess isEqualToNumber:@(YES)])
+        {
+            [MBProgressHUD showSuccess:@"报名成功"];
+        }
+        else
+        {
+            [MBProgressHUD showError:@"报名失败"];
+        }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         NSLog(@"%@",error);
+        [MBProgressHUD showError:@"报名失败"];
     }];
 }
 

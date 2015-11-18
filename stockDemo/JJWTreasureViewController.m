@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *indexLabel;
 @property (weak, nonatomic) IBOutlet UILabel *label1;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UIButton *resetBtn;
 
 @property (nonatomic, copy) NSString *selleID;
 @property (nonatomic, strong) SocketIOClient *client;
@@ -270,6 +271,25 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         [MBProgressHUD showError:@"卖出失败"];
+    }];
+}
+- (IBAction)resetBtnClicked:(UIButton *)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kUrlPrefix,@"IfStockMMUser/Reborn"];
+    NSDictionary *parameters = @{@"id" :self.if_stock_money_mm_id,
+                                 };
+    NSString *accessToken = BEARER;
+    accessToken = [accessToken stringByAppendingString:@" "];
+    accessToken = [accessToken stringByAppendingString:self.access_token];
+    
+    [manager.requestSerializer setValue:accessToken forHTTPHeaderField:@"Authorization"];
+    [manager PUT:url parameters:parameters success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
     }];
 }
 
